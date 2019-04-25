@@ -1,0 +1,26 @@
+{
+    "name": "gladbakery",
+    "version": "1.0.0",
+    "description": "Proyecto de programacion web final",
+    "main": "index.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yuniorlaureano/GladBakery.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yuniorlaureano/GladBakery/issues"
+    },
+    "homepage": "https://github.com/yuniorlaureano/GladBakery#readme",
+    "dependencies": {
+        "bootstrap": "^4.3.1",
+        "ejs": "^2.6.1",
+        "express": "^4.16.4",
+        "jquery": "^3.4.0",
+        "pug": "^2.0.3"
+    }
+}
