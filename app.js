@@ -13,9 +13,11 @@ app.set('view engine', 'ejs');
 
 const adminRoute = require('./src/routes/admin-route')();
 const defaultRoute = require('./src/routes/default-route')();
+const loginRoute = require('./src/routes/login-route')();
 
 app.use('/admin', adminRoute);
 app.use('/default', defaultRoute);
+app.use('/login', loginRoute);
 
 app.listen(port, function() {
     console.log('listeing on port ' + port);
