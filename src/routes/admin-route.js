@@ -7,6 +7,18 @@ function route() {
         res.render('admin');
     });
 
+    adminRoute.route('/cliente').get((req, res) => {
+        res.render('cliente');
+    });
+
+    adminRoute.route('/pedido').get((req, res) => {
+        res.render('pedido');
+    });
+
+    adminRoute.route('/pastel').get((req, res) => {
+        res.render('pastel');
+    });
+
     return adminRoute;
 }
 

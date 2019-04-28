@@ -7,6 +7,12 @@ function route() {
         res.render('default');
     });
 
+    defaultRoute.route('/registro').get((req, res) => {
+        res.render('registro');
+    });
+
+    
+
     return defaultRoute;
 }
 
