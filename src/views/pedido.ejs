@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/css/pedido.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>GladBakery</title>
 </head>
 
@@ -20,14 +21,11 @@
             <a class="navbar-brand" href="/default">
                 <img id="icon" src="https://image.flaticon.com/icons/svg/1256/1256964.svg" />
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-
-                </span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/admin">Admin</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/default">Inicio</a>
                     </li>
@@ -49,51 +47,78 @@
         </nav>
 
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button id="mostrar-formulario-cliente" type="button" class="btn btn-primary" data-context="listar">Listar</button>
+            <button id="btn-pedido-masive-notify" type="button" class="btn btn-primary btn-sm"
+                data-context="listar">Notifiar Clientes Maxivo</button>
         </div>
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Admin</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filtrar por Estado
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Completado</a>
+                            <a class="dropdown-item" href="#">Pendiente</a>
+                            <a class="dropdown-item" href="#">Retrasado</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
         <hr />
-        <div class="card">
-            <div class="card-body">
-                <table id="pedido-table">
-                    <thead>
-                        <tr>
-                            <th>Estado</th>
-                            <th>Fecha</th>
-                            <th>Peso</th>
-                            <th>Comentario</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        <div class="media pedido-container">
+            <img class="mr-3 pido-icon" src="https://www.flaticon.es/premium-icon/icons/svg/1493/1493283.svg"
+                alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0">Bizcuit Name</h5>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-info btn-sm">Notificar Cliente</button>
+                    <button type="button" class="btn btn-outline-success btn-sm">Ver Detalles</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm">Cambiar Estado</button>
+                    <input type="checkbox" class="select-pedio-sigle" />
+                </div>
+                <dir>
+                    <span>Comentario:</span> <span>N/A</span>
+                </dir>
             </div>
         </div>
-        <hr>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="formulario-cliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Registro de Clientes</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="media pedido-container">
+            <img class="mr-3 pido-icon" src="https://www.flaticon.es/premium-icon/icons/svg/1493/1493283.svg"
+                alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0">Bizcuit Name</h5>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-info btn-sm">Notificar Cliente</button>
+                    <button type="button" class="btn btn-outline-success btn-sm">Ver Detalles</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm">Cambiar Estado</button>
+                    <input type="checkbox" class="select-pedio-sigle" />
                 </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <dir>
+                    <span>Comentario:</span> <span>N/A</span>
+                </dir>
             </div>
         </div>
+
+        <nav aria-label="Page navigation" id="pagin-item">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+            </ul>
+        </nav>
     </div>
-    
+
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

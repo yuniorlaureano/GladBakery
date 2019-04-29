@@ -1,0 +1,55 @@
+Cliente
+{
+	"nombre": null,
+	"apellido": null,
+	"edad": null,
+	"email": null,
+	"telefono": null,
+	"direccion": {
+		sector: null,
+		calle: null,
+		numero: null,
+		referencia: null		
+	}
+}
+
+SuperUsers{
+	"clienteId": null,
+	"status": null,
+}
+
+Pastel
+{
+	"nombre": null,
+	"descripcion": null,
+	"imgUrl": null
+}
+
+PastelIngrediente{
+	"PastelId": null,
+	"IngredienteId": null
+}
+
+
+
+Pedido{
+	"status": null,
+	"fecha": null,
+	"peso": null,
+	"Comentario": null,
+	"imgUrlSugerencia": null,
+	"clienteId": null,
+	"pastelId": null,
+}
+
+Insumo{
+	"nombre": null,
+	"descripcion": null
+}
+
+Ingrediente{
+	"insumoId": null,
+	"cantidad": null,
+	"descripcion": null,
+	"pastelId": null
+}

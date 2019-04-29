@@ -1,0 +1,12 @@
+#formulario-registro-producto {
+    display: none;
+}
+
+#upload-pastel{
+    width: 60px;
+    cursor: pointer;
+}
+
+#upload-pastel-image{
+    display: none;
+}
