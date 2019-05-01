@@ -167,10 +167,10 @@
 
   <div class="modal fade" id="modal-pastel-insumo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Insumo</h5>
+          <h5 class="modal-title">Insumo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -188,7 +188,17 @@
           </ul>
           <div class="tab-content" id="insumo-tab-content">
             <div class="tab-pane fade show active" id="insumo-listar" role="tabpanel"
-              aria-labelledby="ingrediente-tab-listar">listar</div>
+              aria-labelledby="ingrediente-tab-listar">
+              <table id="insumo-table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>  
+            </div>
             <div class="tab-pane fade" id="insumo-crear" role="tabpanel" aria-labelledby="insumo-tab-crear">
               <form>
                 <div class="form-group">

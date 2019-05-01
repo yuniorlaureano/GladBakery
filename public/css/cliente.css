@@ -25,3 +25,12 @@ legend {
 .my-float{
 	margin-top:22px;
 }
+
+.validation-span {
+	position: absolute;
+    top: -6px;
+    right: 30px;
+    font-size: 40px;
+	color: red;
+	display: none;
+}

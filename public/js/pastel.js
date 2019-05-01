@@ -1,5 +1,7 @@
 $(function(){
     $("#pastel-table").DataTable();
+    $("#insumo-table").DataTable();
+
 
     $("#btn-ingrediente").on("click", function(){
         $("#modal-pastel-ingrediente").modal("show");

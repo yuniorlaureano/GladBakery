@@ -58,32 +58,51 @@
                <div>
                     <div class="form-group row">
                             <label for="input-cliente-nombre" class="col-sm-2 col-form-label">Nombre</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10" style="position: relative">
                                 <input type="text" class="form-control" id="input-cliente-nombre" name="nombre" placeholder="Nombre">
+                                <span class="validation-span validation-span-nombre">*</span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-cliente-apellido" class="col-sm-2 col-form-label">Apellido</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10" style="position: relative">
                                 <input type="text" class="form-control" id="input-cliente-apellido" name="apellido" placeholder="Apellido">
+                                <span class="validation-span validation-span-apellido">*</span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-cliente-edad" class="col-sm-2 col-form-label">Edad</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10" style="position: relative">
                                 <input type="number" class="form-control" id="input-cliente-edad" name="edad" placeholder="Edad">
+                                <span class="validation-span validation-span-edad">*</span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-cliente-email" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10" style="position: relative">
                                 <input type="email" class="form-control" id="input-cliente-email" name="email" placeholder="Email">
+                                <span class="validation-span validation-span-email">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="input-cliente-clave" class="col-sm-2 col-form-label">Clave</label>
+                            <div class="col-sm-10" style="position: relative">
+                                <input type="password" class="form-control" id="input-cliente-clave" name="clave" placeholder="Clave">
+                                <span class="validation-span validation-span-clave">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="input-cliente-retry" class="col-sm-2 col-form-label">Repita la Clave</label>
+                            <div class="col-sm-10" style="position: relative">
+                                <input type="password" class="form-control" id="input-cliente-retry" name="clave" placeholder="Clave">
+                                <span class="validation-span validation-span-retry">*</span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-cliente-telefono" class="col-sm-2 col-form-label">Telefono</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10" style="position: relative">
                                 <input type="text" class="form-control" id="input-cliente-telefono" name="telefono" placeholder="Telefono">
+                                <span class="validation-span validation-span-telefono">*</span>
                             </div>
                         </div>
                </div>
@@ -92,34 +111,38 @@
                 <legend>Direccion</legend>
                 <div>
                      <div class="form-group row">
-                             <label for="input-cliente-nombre" class="col-sm-2 col-form-label">Sector</label>
-                             <div class="col-sm-10">
-                                 <input type="text" class="form-control" id="input-cliente-nombre" name="nombre" placeholder="Nombre">
+                             <label for="input-cliente-sector" class="col-sm-2 col-form-label">Sector</label>
+                             <div class="col-sm-10" style="position: relative">
+                                 <input type="text" class="form-control" id="input-cliente-sector" name="sector" placeholder="Sector">
+                                 <span class="validation-span validation-span-sector">*</span>
                              </div>
                          </div>
                          <div class="form-group row">
-                             <label for="input-cliente-apellido" class="col-sm-2 col-form-label">Calle</label>
-                             <div class="col-sm-10">
-                                 <input type="text" class="form-control" id="input-cliente-apellido" name="apellido" placeholder="Apellido">
+                             <label for="input-cliente-calle" class="col-sm-2 col-form-label">Calle</label>
+                             <div class="col-sm-10" style="position: relative">
+                                 <input type="text" class="form-control" id="input-cliente-calle" name="calle" placeholder="Calle">
+                                 <span class="validation-span validation-span-calle">*</span>
                              </div>
                          </div>
                          <div class="form-group row">
-                                <label for="input-cliente-apellido" class="col-sm-2 col-form-label">Numero</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input-cliente-apellido" name="apellido" placeholder="Apellido">
+                                <label for="input-cliente-numero" class="col-sm-2 col-form-label">Numero</label>
+                                <div class="col-sm-10" style="position: relative">
+                                    <input type="number" class="form-control" id="input-cliente-numero" name="numero" placeholder="Numero">
+                                    <span class="validation-span validation-span-numero">*</span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                    <label for="input-cliente-apellido" class="col-sm-2 col-form-label">Referencia</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="input-cliente-apellido" name="apellido" placeholder="Apellido">
+                                    <label for="input-cliente-referencia" class="col-sm-2 col-form-label">Referencia</label>
+                                    <div class="col-sm-10" style="position: relative">
+                                        <input type="text" class="form-control" id="input-cliente-referencia" name="feferencia" placeholder="Referencia">
+                                        <span class="validation-span validation-span-referencia">*</span>
                                     </div>
                                 </div>
                 </div>
             </fieldset>
             <div style="padding-top: 5px; text-align: right">
-                    <button class="btn btn-danger" id="button-cliente-gardar">Cancelar</button>
-                    <button class="btn btn-success" id="button-cliente-cancelar">Guadar</button>
+                    <button type="button" class="btn btn-danger" id="button-cliente-gardar">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="button-cliente-cancelar">Guadar</button>
             </div>
         </form>
 
