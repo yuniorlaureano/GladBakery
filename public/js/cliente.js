@@ -1,17 +1,35 @@
-var ClientModule = (function(){
+function getClientes() {
+    axios.get('/admin/api/cliente')
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+$(function() {
 
 
-    return {
+    $("#client-table").DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/admin/api/cliente",
+            "type": "GET"
+        },
+        "columns": [
+            { "data": "nombre" },
+            { "data": "apellido" },
+            { "data": "edad" },
+            { "data": "email" },
+            { "data": "telefono" },
+            { "data": "sector" }
+        ]
+    });
 
-    };
-}());
-
-$(function(){
-    $("#client-table").DataTable();
-
-    $("#mostrar-formulario-cliente").on("click", function(){
+    $("#mostrar-formulario-cliente").on("click", function() {
         var context = $(this).data("context");
-        if(context == "listar"){
+        if (context == "listar") {
             $(this).data("context", "crear");
             $(this).text("Crear");
             $("#formulario-listado-cliente").show();
@@ -24,47 +42,70 @@ $(function(){
         }
     });
 
-    $("#button-cliente-gardar").on("click", function(){
+    $("#button-cliente-gardar").on("click", function() {
         var data = {
-            nombre: { val: $("#input-cliente-nombre").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-nombre'},
-            apellido: { val: $("#input-cliente-apellido").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-apellido'},
-            edad: { val: $("#input-cliente-edad").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-edad'},
-            email: { val: $("#input-cliente-email").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-email'},
-            clave: { val: $("#input-cliente-clave").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-clave'},
-            retry: { val: $("#input-cliente-retry").val(), valid: function(retry){ return (this.val != "" && this.val != undefined) && this.val == retry}, validationspan: 'validation-span-retry'},
-            telefono: { val: $("#input-cliente-telefono").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-telefono'},
-            sector: { val: $("#input-cliente-sector").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-sector'},
-            calle: { val: $("#input-cliente-calle").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-calle'},
-            numero: { val: { val: $("#input-cliente-numero").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-numero'},
-            referencia: { val:$("#input-cliente-referencia").val(), valid: function(){ return this.val != "" && this.val != undefined}, validationspan: 'validation-span-referencia'}
+            nombre: { val: $("#input-cliente-nombre").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-nombre' },
+            apellido: { val: $("#input-cliente-apellido").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-apellido' },
+            edad: { val: $("#input-cliente-edad").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-edad' },
+            email: { val: $("#input-cliente-email").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-email' },
+            clave: { val: $("#input-cliente-clave").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-clave' },
+            retry: {
+                val: $("#input-cliente-retry").val(),
+                valid: function(retry) {
+                    return (this.val != "" && this.val != undefined) && this.val == retry;
+                },
+                validationspan: 'validation-span-retry'
+            },
+            telefono: { val: $("#input-cliente-telefono").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-telefono' },
+            sector: { val: $("#input-cliente-sector").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-sector' },
+            calle: { val: $("#input-cliente-calle").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-calle' },
+            numero: { val: $("#input-cliente-numero").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-numero' },
+            referencia: { val: $("#input-cliente-referencia").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-referencia' }
         };
 
         var hasError = false;
-        var _data = Object.keys(data).filter(function(item){
-            if(!data[item].valid(data.clave)){
-                $("." + data[item].validationspan).show();
+        var _data = {};
+        var keys = Object.keys(data);
+
+        for (var i = 0; i < keys.length; i++) {
+            if (!data[keys[i]].valid(data.clave.val)) {
+                $("." + data[keys[i]].validationspan).show();
                 hasError = true;
             } else {
-                $("." + data[item].validationspan).hide();
+                $("." + data[keys[i]].validationspan).hide();
             }
-        });
 
-        if(hasError)
-            return;
+            _data[keys[i]] = data[keys[i]].val;
+        }
+
+        // if (hasError) {
+        //     return false;
+        // }
+
+        axios.post('/admin/api/cliente', _data)
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
     });
 
-    $("#button-cliente-cancelar").on("click", function(){
-        $("#input-cliente-nombre").val('da');
-        $("#input-cliente-apellido").val('a');
-        $("#input-cliente-edad").val('asdf');
-        $("#input-cliente-email").val('ad');
-        $("#input-cliente-clave").val('fads');
-        $("#input-cliente-retry").val('fads');
-        $("#input-cliente-telefono").val('af');
-        $("#input-cliente-sector").val('asdf');
-        $("#input-cliente-calle").val('as');
-        $("#input-cliente-numero").val('34');
-        $("#input-cliente-referencia").val('af');
+    $("#button-cliente-cancelar").on("click", function() {
+        $("#input-cliente-nombre").val('');
+        $("#input-cliente-apellido").val('');
+        $("#input-cliente-edad").val('');
+        $("#input-cliente-email").val('');
+        $("#input-cliente-clave").val('');
+        $("#input-cliente-retry").val('');
+        $("#input-cliente-telefono").val('');
+        $("#input-cliente-sector").val('');
+        $("#input-cliente-calle").val('');
+        $("#input-cliente-numero").val('');
+        $("#input-cliente-referencia").val('');
     });
+
+    // getClientes();
+
 });
-

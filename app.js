@@ -1,8 +1,16 @@
 const express = require('express');
 const path = require('path');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({ secret: 'library' }));
 
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
@@ -10,6 +18,7 @@ app.use('/css', express.static(path.join(__dirname, 'node_modules/datatables/med
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/datatables/media/js')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/axios/dist')));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
