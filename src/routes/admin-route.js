@@ -3,6 +3,7 @@ const express = require('express');
 const adminRoute = express.Router();
 
 const clientes = [{
+    id: 1,
     nombre: 'Yunior',
     apellido: 'Laureano',
     edad: '26',
@@ -26,7 +27,24 @@ function route() {
     });
 
     adminRoute.route('/api/cliente').get((req, res) => {
-        res.json({ data: clientes });
+
+        res.json({
+            "draw": req.query.draw + 1,
+            "recordsTotal": clientes.length,
+            "recordsFiltered": clientes.length,
+            "data": clientes
+        });
+    });
+
+    adminRoute.route('/api/cliente/:id').get((req, res) => {
+        var cliente = clientes.filter(function(item) {
+            return item.id == req.params.id;
+        });
+
+        if (cliente.length > 0)
+            res.json(cliente[0]);
+        else
+            res.sendStatus(404);
     });
 
     adminRoute.route('/api/cliente').post((req, res) => {
