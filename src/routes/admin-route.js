@@ -2,7 +2,7 @@ const express = require('express');
 
 const adminRoute = express.Router();
 
-const clientes = [{
+var clientes = [{
     id: 1,
     nombre: 'Yunior',
     apellido: 'Laureano',
@@ -48,8 +48,34 @@ function route() {
     });
 
     adminRoute.route('/api/cliente').post((req, res) => {
-        clientes.push(req.body);
+        clientes.push({
+            ...req.body,
+            id: clientes.length + 1
+        });
         res.end();
+    });
+
+    adminRoute.route('/api/cliente/:id').put((req, res) => {
+        clientes = clientes.filter(function(item) {
+            if (item.id == req.params.id) {
+                var keys = Object.keys(req.body);
+                for (var i = 0; i < keys.length; i++) {
+                    if (item[keys[i]] && item[keys[i]] != req.body[keys[i]])
+                        item[keys[i]] = req.body[keys[i]];
+                }
+            }
+            return true;
+        });
+
+        res.sendStatus(204);
+    });
+
+    adminRoute.route('/api/cliente/:id').delete((req, res) => {
+        clientes = clientes.filter(function(item) {
+            return item.id != req.params.id;
+        });
+
+        res.sendStatus(204);
     });
 
     adminRoute.route('/pedido').get((req, res) => {

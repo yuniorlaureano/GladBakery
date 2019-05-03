@@ -40,7 +40,7 @@ $(function() {
         }
     });
 
-    $("#button-cliente-gardar").on("click", function() {
+    $("#button-cliente-guardar").on("click", function() {
         var data = {
             nombre: { val: $("#input-cliente-nombre").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-nombre' },
             apellido: { val: $("#input-cliente-apellido").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-apellido' },
@@ -88,6 +88,8 @@ $(function() {
                 console.log(error);
             });
 
+        cleanClientFields();
+
     });
 
     $("#button-cliente-modificar").on("click", function() {
@@ -96,14 +98,6 @@ $(function() {
             apellido: { val: $("#input-cliente-apellido").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-apellido' },
             edad: { val: $("#input-cliente-edad").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-edad' },
             email: { val: $("#input-cliente-email").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-email' },
-            clave: { val: $("#input-cliente-clave").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-clave' },
-            retry: {
-                val: $("#input-cliente-retry").val(),
-                valid: function(retry) {
-                    return (this.val != "" && this.val != undefined) && this.val == retry;
-                },
-                validationspan: 'validation-span-retry'
-            },
             telefono: { val: $("#input-cliente-telefono").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-telefono' },
             sector: { val: $("#input-cliente-sector").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-sector' },
             calle: { val: $("#input-cliente-calle").val(), valid: function() { return this.val != "" && this.val != undefined; }, validationspan: 'validation-span-calle' },
@@ -116,7 +110,7 @@ $(function() {
         var keys = Object.keys(data);
 
         for (var i = 0; i < keys.length; i++) {
-            if (!data[keys[i]].valid(data.clave.val)) {
+            if (!data[keys[i]].valid()) {
                 $("." + data[keys[i]].validationspan).show();
                 hasError = true;
             } else {
@@ -130,14 +124,18 @@ $(function() {
             return false;
         }
 
-        axios.put('/admin/api/cliente', _data)
+        var id = $("#input-cliente-id").val();
+        axios.put('/admin/api/cliente/' + id, _data)
             .then(function(response) {
+
                 clienteTable.ajax.reload();
             })
             .catch(function(error) {
                 console.log(error);
             });
 
+        $("#button-cliente-modificar").hide();
+        cleanClientFields();
     });
 
     $("#button-cliente-cancelar").on("click", function() {
@@ -145,7 +143,13 @@ $(function() {
     });
 
     $("#client-table").on("click", ".delete", function() {
-        alert($(this).data("id"));
+        axios.delete('/admin/api/cliente/' + $(this).data("id"))
+            .then(function(response) {
+                clienteTable.ajax.reload();
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     });
 
     $("#client-table").on("click", ".edit", function() {
@@ -160,6 +164,8 @@ $(function() {
                         }
 
                     }
+
+                    $("#input-cliente-id").val(response.data["id"]);
                 }
             })
             .catch(function(error) {
@@ -170,10 +176,12 @@ $(function() {
         $("#formulario-registro-cliente").show();
         $("#mostrar-formulario-cliente").data("context", "listar");
         $("#mostrar-formulario-cliente").text("Listar");
+        $("#button-cliente-modificar").show();
+        $("#button-cliente-guardar").hide();
+        $(".clave-container").hide();
     });
 
 });
-
 
 function cleanClientFields() {
     $("#input-cliente-nombre").val('');
@@ -187,4 +195,9 @@ function cleanClientFields() {
     $("#input-cliente-calle").val('');
     $("#input-cliente-numero").val('');
     $("#input-cliente-referencia").val('');
+    $("#input-cliente-id").val('');
+    $("#button-cliente-modificar").hide();
+    $(".clave-container").show();
+    $("#button-cliente-guardar").show();
+    $('.validation-span').hide();
 }

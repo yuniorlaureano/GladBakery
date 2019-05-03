@@ -32,4 +32,4 @@ app.use('/login', loginRoute);
 
 app.listen(port, function() {
     console.log('listeing on port ' + port);
-})
+});
