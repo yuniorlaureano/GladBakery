@@ -26,6 +26,9 @@ const adminRoute = require('./src/routes/admin-route')();
 const defaultRoute = require('./src/routes/default-route')();
 const loginRoute = require('./src/routes/login-route')();
 
+app.get('/', function(req, res){
+    res.redirect('/default');
+});
 app.use('/admin', adminRoute);
 app.use('/default', defaultRoute);
 app.use('/login', loginRoute);

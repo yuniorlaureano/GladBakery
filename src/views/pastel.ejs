@@ -189,11 +189,12 @@
           <div class="tab-content" id="insumo-tab-content">
             <div class="tab-pane fade show active" id="insumo-listar" role="tabpanel"
               aria-labelledby="ingrediente-tab-listar">
-              <table id="insumo-table">
+              <table id="insumo-table" style="width: 100%;">
                 <thead>
                   <tr>
                     <th>Nombre</th>
                     <th>Descripcion</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -201,13 +202,15 @@
             </div>
             <div class="tab-pane fade" id="insumo-crear" role="tabpanel" aria-labelledby="insumo-tab-crear">
               <form>
-                <div class="form-group">
+                <div class="form-group" style="position: relative;">
                   <label for="exampleInputEmail1">Nombre</label>
                   <input type="email" class="form-control" id="input-insumo-nombre" placeholder="Nombre">
+                  <span class="validation-span validation-span-nombre">*</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="position: relative;">
                   <label for="exampleInputPassword1">Descripcion</label>
                   <input type="password" class="form-control" id="input-insumo-descripcion" placeholder="Descripcion">
+                  <span class="validation-span validation-span-descripcion">*</span>
                 </div>
               </form>
             </div>
@@ -215,7 +218,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-primary" id="btn-insumo-guardar">Guardar</button>
         </div>
       </div>
     </div>
@@ -223,6 +226,7 @@
 
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/axios.min.js"></script>
   <script src="/js/jquery.dataTables.min.js"></script>
   <script src="/js/pastel.js"></script>
 </body>

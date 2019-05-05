@@ -10,3 +10,12 @@
 #upload-pastel-image{
     display: none;
 }
+
+.validation-span {
+	position: absolute;
+    top: -6px;
+    right: 30px;
+    font-size: 40px;
+	color: red;
+	display: none;
+}
